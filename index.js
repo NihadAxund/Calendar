@@ -1,27 +1,55 @@
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday","Sunday"];
-const year = new Date();
-var d = new Date(`${year.getFullYear()}-03`);
+const year1 = new Date();
+var d = new Date(`${year1.getFullYear()}-${year1.getMonth()+1}`);
 var lastDay = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
-let today=year.getDate();
+let today=year1.getDate();
 // Tüm günleri içerecek bir dizi oluşturun
-var allDays = [];
+var allDays= [];
 // Ayın tüm günlerini diziye ekleyin
-for (var i = 1; i <= lastDay; i++) {
-    allDays.push(new Date(d.getFullYear(), d.getMonth(), i));
+// for (var i = 1; i <= lastDay; i++) {
+//     allDays.push(new Date(d.getFullYear(), d.getMonth(), i));
+// }
+
+function Change(){
+    let val = event.target;
+    lastDay = new Date(d.getFullYear(), val.value, 0).getDate();
+
+    d=new Date(`${d.getFullYear()}-${val.value}`);
+    Start();
+
 }
 
+function AddCommbox(){
+    let item = document.querySelector(".form-select");
+    //alert(item.innerHTML)
+    let string ='';
+    //alert(year.getMonth())
+    for (let index = 0; index < month.length; index++) {
+        const element = month[index];
+        if(index==d.getMonth()){
+            string+=`<option selected value="${index+1}">${element}</option>`;
+        }
+        else{
+            string+=`<option value="${index+1}">${element}</option>`;
+        }
+    }
+    item.innerHTML = string;
+}
 
-
-
-
-let content = '';
-let isokay = false;
 function Start() {
-    let num = 0;
+    let isokay = false;
+    allDays=[];
+    for (var i = 1; i <= lastDay; i++) {
+        allDays.push(new Date(d.getFullYear(), d.getMonth(), i));
+    }
     let value = document.querySelector("tbody")
-    if ( year.getFullYear()==allDays[num].getFullYear()&& allDays[num].getMonth()==year.getMonth()) {
+    let content = '';
+    let num = 0;
+    //alert(d.getMonth());
+    if ( year1.getFullYear()==allDays[num].getFullYear()&& allDays[num].getMonth()==year1.getMonth()) {
         isokay = true;
+        //alert(isokay);
     }
     //alert(isokay);
     for (let index = 0; index < 6; index++) {
@@ -41,16 +69,15 @@ function Start() {
 
                 if (weekday==j) {
                     if (isokay&&day==today) {
-                        content += `<td  onclick="myFunction()" class="td_today" onclick="Clikc">${day}</td>`
+                        content += `<td onclick="myFunction()" class="td_today" onclick="Clikc">${day}</td>`
                     }
                     else{
-                        content += `<td  onclick="myFunction()" >${day}</td>`    
-                        
+                        content += `<td onclick="myFunction()" >${day}</td>`    
                     }
                     num++;
                 }
                 else{
-                    content += `<td  onclick="myFunction()" class="td_none">0</td>`
+                    content += `<td onclick="myFunction()" class="td_none">0</td>`
                 }                
                 
             }
@@ -62,6 +89,7 @@ function Start() {
         content += `<tr>`;
     }
     value.innerHTML = content;
+    AddCommbox();
 }
 
 
