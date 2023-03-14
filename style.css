@@ -1,3 +1,6 @@
+*{
+    margin: 0;
+}
 table {
     list-style-type: none;
 
@@ -6,12 +9,30 @@ table {
     padding: 20px;
     background-color: rgb(68, 68, 68);
 }
-
-body {
+body{
     background-color: rgb(37, 37, 37);
+}
+body>div{
+    height: 20vh;
     display: flex;
     justify-content: center;
-    height: 100vh;
+}
+body>div>div{
+    background-color: rgb(219, 219, 219);
+    width: 300px;
+    display: flex;
+    height: 100px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.Section_1 {
+
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    width: 100%;
     align-items: center;
 }
 
@@ -76,11 +97,14 @@ td:hover {
     background-color: rgb(4, 118, 248);
 }
 
-.td_none {
+.td_noneR,.td_noneL {
     color: rgb(118, 118, 118);
 }
-
-.td_none:hover {
+.td_noneR:hover{
+    color: white;
+    background-color: rgb(130, 129, 129);
+}
+.td_noneL:hover {
     color: white;
     background-color: rgb(130, 129, 129);
 }
