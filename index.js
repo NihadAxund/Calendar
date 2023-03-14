@@ -10,7 +10,6 @@ var allDays = [];
 function Change() {
     let val = event.target;
     lastDay = new Date(d.getFullYear(), val.value, 0).getDate();
-
     d = new Date(`${d.getFullYear()}-${val.value}`);
     Start();
 
@@ -48,8 +47,9 @@ function Start() {
     let value = document.querySelector("tbody")
     let content = '';
     let num = 0;
-    if (year1.getFullYear() == allDays[num].getFullYear() && allDays[num].getMonth() == year1.getMonth()) {
+    if (year1.getFullYear() == d.getFullYear() && allDays[num].getMonth() == year1.getMonth()) {
         isokay = true;
+        //alert(d.getFullYear());
     }
     if (d.getMonth() - 1 == -1) {
         RDate = 12;
@@ -85,7 +85,7 @@ function Start() {
                             const element = DateArray[index];
                             if (days.toJSON().slice(0, 10) == element) {
                                 boolens = false;
-                                content += `<td style="background-color: rgba(0, 0, 0, 0.365); color: white; border-color: rgb(4, 118, 248);">${day}</td>`
+                                content += `<td onclick="myFunction()" class="animate__animated animate__flash" style="background-color: rgba(0, 0, 0, 0.365); color: white; border-color: rgb(4, 118, 248);">${day}</td>`
                                 break;
                             }
                         }
@@ -154,6 +154,17 @@ function myFunction() {
     //indexsisi++;
 }
 Start();
+
+
+function Click_G(val){
+    if (val.length>3&&val>=1800&&val<=year1.getFullYear()) {
+        d = new Date(`${val}-${d.getMonth()}`)
+        //alert(d.getFullYear());
+        Start();
+    }
+    return false;
+}
+
 
 setInterval(() => {
     let Timer = new Date();

@@ -1,6 +1,7 @@
-*{
+* {
     margin: 0;
 }
+
 table {
     list-style-type: none;
 
@@ -12,15 +13,18 @@ table {
     box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
     background-color: rgb(68, 68, 68);
 }
-body{
+
+body {
     background-color: rgb(37, 37, 37);
 }
-body>div{
+
+body>div {
     height: 20vh;
     display: flex;
     justify-content: center;
 }
-body>div>div{
+
+body>div>div {
     background-color: rgb(219, 219, 219);
     width: 300px;
     display: flex;
@@ -29,8 +33,9 @@ body>div>div{
     border-bottom-right-radius: 50px;
     align-items: center;
     justify-content: center;
-    
+
 }
+
 .Section_1 {
 
     display: flex;
@@ -45,13 +50,13 @@ body>div>div{
     width: min-content;
     height: min-content;
     background-color: transparent;
-    
+
     display: flex;
-    
+
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    
+
 }
 
 .Sec-1>#Sec {
@@ -66,6 +71,15 @@ body>div>div{
     justify-content: space-around;
     align-items: center;
 
+}
+
+.Sec-1>.Sec2 {
+    height: 50px;
+    width: 100%;
+    background-color: rgb(219, 219, 219);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-select {
@@ -107,12 +121,14 @@ td:hover {
     background-color: rgb(4, 118, 248);
 }
 
-.td_noneR,.td_noneL {
+.td_noneR,
+.td_noneL {
     color: rgb(118, 118, 118);
 }
-.Year_txt{
+
+.Year_txt {
     background-color: rgb(46, 46, 46);
-    width:auto;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,14 +138,58 @@ td:hover {
     border-radius: 10px;
     color: rgb(255, 255, 255);
 }
-::placeholder{
+
+::placeholder {
     color: rgba(240, 248, 255, 0.637);
 }
-.td_noneR:hover{
+
+.td_noneR:hover {
     color: white;
     background-color: rgb(130, 129, 129);
 }
+
 .td_noneL:hover {
     color: white;
     background-color: rgb(130, 129, 129);
+}
+
+
+.animate_Btn {
+    --c: rgb(4, 118, 248);
+    /* the color*/
+
+    box-shadow: 0 0 0 .1em inset var(--c);
+    --_g: linear-gradient(var(--c) 0 0) no-repeat;
+    background:
+        var(--_g) calc(var(--_p, 0%) - 100%) 0%,
+        var(--_g) calc(200% - var(--_p, 0%)) 0%,
+        var(--_g) calc(var(--_p, 0%) - 100%) 100%,
+        var(--_g) calc(200% - var(--_p, 0%)) 100%;
+    background-size: 50.5% calc(var(--_p, 0%)/2 + .5%);
+    outline-offset: .1em;
+    transition: background-size .4s, background-position 0s .4s;
+}
+
+.animate_Btn:hover {
+    --_p: 100%;
+    transition: background-position .4s, background-size 0s;
+    color: #fff;
+}
+
+.animate_Btn:active {
+    box-shadow: 0 0 9e9q inset rgba(190, 225, 255, 0.6);
+    background-color: var(--c);
+    color: #fff;
+}
+
+
+
+.animate_Btn {
+    font-family: system-ui, sans-serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
 }
