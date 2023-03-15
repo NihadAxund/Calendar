@@ -37,6 +37,18 @@ function LDate(time) {
 }
 
 function Start() {
+    var allCookie = document.cookie;
+    try{
+        //alert("a");
+        let myArrayCookie = allCookie.split(';')
+        .find(cookie => cookie.trim().startsWith('myArray='))
+        .split('=')[1].split(',');
+        //alert(myArrayCookie);
+        DateArray =myArrayCookie;
+    }
+    catch(err) {
+        DateArray = [];
+    }
     let isokay = false;
     let RDate = null;
     let RDateCount = null;
@@ -132,10 +144,14 @@ function myFunction() {
     let val = event.target;
     let DT = new Date(`${d.getFullYear()}-${d.getMonth() + 1}-${val.innerHTML}`);
     if (val.style.backgroundColor == "") {
+        ///alert(DT.toJSON().slice(0, 10))
         val.style.backgroundColor = "rgba(0, 0, 0, 0.365)";
         val.style.color = "white";
         val.style.borderColor = "rgb(4, 118, 248)";
         DateArray.push(DT.toJSON().slice(0, 10));
+        var dateStr = JSON.stringify(DateArray);
+        setCookie(DateArray);
+
     }
     else {
         val.style.backgroundColor = "";
@@ -144,9 +160,9 @@ function myFunction() {
         for (let index = 0; index < DateArray.length; index++) {
             const element = DateArray[index];
             if (element == DT.toJSON().slice(0, 10)) {
-                //DateArray[index].remove();
-                //alert(element.toJSON().slice(0, 10))
                 DateArray.splice(index, 1)
+                var dateStr = JSON.stringify(DateArray);
+                setCookie(dateStr);
             }
 
         }
@@ -155,11 +171,13 @@ function myFunction() {
 }
 Start();
 
+function setCookie(str) {
+  document.cookie = `myArray=${str}`;
+}
 
 function Click_G(val){
     if (val.length>3&&val>=1800&&val<=year1.getFullYear()) {
         d = new Date(`${val}-${d.getMonth()}`)
-        //alert(d.getFullYear());
         Start();
     }
     return false;
